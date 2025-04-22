@@ -11,39 +11,38 @@ Protects important scientific research from being mistakenly overlooked due to b
 
 - Suggests replacement sentences, using sentiment analysis and generative AI.
 
-## 🧱 Full-Stack Architecture
 
-🖼️ Frontend (Web UI)
+## 🖼️ Frontend (Web UI)
 
 - React
 - Components: File upload dropzone, Progress/loading indicator, Results view (problematic sentence + suggested fix)
-- Cloudfare Turnstile to verify user is not a robot (optional) https://www.cloudflare.com/application-services/products/turnstile/
+- [Cloudfare Turnstile](https://www.cloudflare.com/application-services/products/turnstile/) to verify user is not a robot (optional)
 
 
-🧠 Backend (FastAPI)
+## 🧠 Backend (FastAPI)
 Endpoints:
 
 Swagger Docs
 
-POST  /analyze-paper: handles file upload, returns flagged sentences + suggestions
-GET   /banned-words: returns list of banned words by government
-DEL   /analyze-paper/{id}: deletes the history of the paper to protect scientist IP 
+- POST  /analyze-paper: handles file upload, returns flagged sentences + suggestions
+- GET   /banned-words: returns list of banned words by government
+- DEL   /analyze-paper/{id}: deletes the history of the paper to protect scientist IP (optional)
 
 Logic Flow:
 
-Accept and parse document (.txt, .docx, or .pdf)
+1. Accept and parse document (.txt, .docx, or .pdf)
 
-Run keyword scan for banned words.
+2. Run keyword scan for banned words.
 
-Extract sentences that contain them.
+3. Extract sentences that contain them.
 
-Feed each into BERT for sentiment analysis (optional).
+4. Feed each into BERT for sentiment analysis (optional).
 
-Use generative AI (e.g., OpenAI API or local model) to propose alternatives.
+5. Use generative AI (e.g., OpenAI API or local model) to propose alternatives.
 
-Return: [{ "banned": "trigger phrase", "sentence": "...", "suggestion": "..." }]
+6. Return: [{ "banned": "trigger phrase", "sentence": "...", "suggestion": "..." }]
 
-🗃️ Database (Optional)
+## 🗃️ Database (Optional)
 Use cases:
 
 Logging uploads
@@ -52,7 +51,7 @@ Tracking flagged sentences
 
 Could be: PostgreSQL, SQLite, or NoSQL like MongoDB
 
-⚙️ NLP/AI Components
+## ⚙️ NLP/AI Components
 Keyword Scanner: ntlk / spaCy / custom dictionary-based matching
 
 Sentiment Analysis: transformers library (distilbert-base-uncased-finetuned-sst-2-english)
@@ -75,7 +74,7 @@ Generative AI: OpenAI GPT-4, Mistral, Claude, or locally hosted LLM
 
 ## Models
 
-# BERT vs GPT
+### BERT vs GPT
 - Need a large context window to accept large documents if doing sentiment analysis on entire document
 - Might make sense to only do sentiment analysis on sentence with the banned word + the surrounding sentences to reduce cost + carbon, and increase performance.
 
