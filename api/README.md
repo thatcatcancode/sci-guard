@@ -1,4 +1,4 @@
-## Install deps
+## Api Setup
 
 ```
 cd /api
@@ -21,7 +21,7 @@ echo $VIRTUAL_ENV
 /Applications/Python\ 3.13/Install\ Certificates.command
 
 # install deps
-pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch
+pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch sentencepiece
 
 # install fastapi cli 
 pip install "fastapi[standard]"
