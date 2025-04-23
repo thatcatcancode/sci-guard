@@ -1,24 +1,33 @@
 ## Install deps
 
 ```
-# virtual env (recommended)
 cd /api
-py -m venv venv
-source venv/bin/activate 
 
-# to verify in virtual env:
+# set python version for env
+pyenv local 3.10.13
+
+# start virtual env
+# py -m venv venv
+/Users/ladams/.pyenv/versions/3.10.13/bin/python3.10 -m venv env
+
+source env/bin/activate 
+
+# verify in virtual env:
 echo $VIRTUAL_ENV
-# will return a fil
-e path to your venv
-
-# install deps
-pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt
+# will return a file path to your venv
 
 # create symlink to certifcate bundle
+# necessary to install nltk
 /Applications/Python\ 3.13/Install\ Certificates.command
 
-# install cli 
+# install deps
+pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch
+
+# install fastapi cli 
 pip install "fastapi[standard]"
+
+deactivate  # exit current venv
+rm -rf venv/  # remove old one
 ```
 
 ## Run the app

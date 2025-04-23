@@ -4,6 +4,7 @@ import nltk
 nltk.download("punkt")
 nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize
+from services.rewriter import rewrite_sentence
 
 banned_words = {"manipulate", "guarantee", "prove"}
 
@@ -18,9 +19,27 @@ def process_file(file):
     for sentence in sentences:
         for word in banned_words:
             if word.lower() in sentence.lower():
+                suggestion = rewrite_sentence(sentence, word)
                 flagged.append({
                     "banned": word,
                     "sentence": sentence,
-                    "suggestion": f"[Suggestion for]: {sentence}"
+                    "suggestion": suggestion,
                 })
     return {"results": flagged}
+
+
+# TODO Use spaCy instead of nltk
+# import spacy
+# from spacy.matcher import PhraseMatcher
+
+# banned_words = ["destroy", "obliterate", "dominate"]
+# nlp = spacy.load("en_core_web_sm")
+# matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
+# patterns = [nlp.make_doc(word) for word in banned_words]
+# matcher.add("BANNED", patterns)
+
+# doc = nlp("This groundbreaking study obliterates previous research.")
+# matches = matcher(doc)
+
+# for match_id, start, end in matches:
+#     print("Matched:", doc[start:end].text)
