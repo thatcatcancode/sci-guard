@@ -6,9 +6,7 @@ nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize
 from services.rewriter import rewrite_sentence
 
-banned_words = {"manipulate", "guarantee", "prove"}
-
-def process_file(file):
+def process_file(file, banned_words):
     print("Processing file...")
     text = extract_text(file)
     if not text:
@@ -18,7 +16,9 @@ def process_file(file):
     flagged = []
     for sentence in sentences:
         for word in banned_words:
+            print('word', word)
             if word.lower() in sentence.lower():
+                print('found!', word)
                 suggestion = rewrite_sentence(sentence, word)
                 flagged.append({
                     "banned": word,
