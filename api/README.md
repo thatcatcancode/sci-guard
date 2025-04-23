@@ -20,8 +20,11 @@ echo $VIRTUAL_ENV
 # necessary to install nltk
 /Applications/Python\ 3.13/Install\ Certificates.command
 
+# set openai key
+export OPENAI_API_KEY=your-key-here
+
 # install deps
-pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch sentencepiece
+pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch sentencepiece openai
 
 # install fastapi cli 
 pip install "fastapi[standard]"
