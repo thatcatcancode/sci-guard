@@ -3,7 +3,7 @@ from utils.extractor import extract_text
 import nltk
 nltk.download("punkt")
 nltk.download('punkt_tab')
-from nltk.tokenize import sent_tokenize
+from nltk.tokenize import sent_tokenize, word_tokenize
 from services.rewriter import rewrite_sentence
 
 def process_file(file, banned_words):
@@ -15,16 +15,17 @@ def process_file(file, banned_words):
     sentences = sent_tokenize(text)
     flagged = []
     for sentence in sentences:
-        for word in banned_words:
-            print('word', word)
-            if word.lower() in sentence.lower():
-                print('found!', word)
-                suggestion = rewrite_sentence(sentence, word)
-                flagged.append({
-                    "banned": word,
-                    "sentence": sentence,
-                    "suggestion": suggestion,
-                })
+        for word in word_tokenize(sentence):
+            for banned_word in banned_words:
+                if banned_word.lower() in word.lower():
+                    print('banned word', banned_word, word)
+                    suggestion = rewrite_sentence(sentence, word, banned_word)
+                    flagged.append({
+                        "banned": banned_word,
+                        "word": word,
+                        "sentence": sentence,
+                        "suggestion": suggestion,
+                    })
     return {"results": flagged}
 
 
