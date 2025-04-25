@@ -4,7 +4,7 @@
 Sci-Guard is an AI tool that scans research papers for banned words and suggests replacements. Consider it your second (government) reviewer.
 
 ### Why 
-Protects important scientific research from being mistakenly overlooked and unfunded due to banned words. 
+Protects important scientific research from being mistakenly overlooked and unfunded due to banned words. Saving science one mistakenly-banned word at a time.
 
 ### Banned Words
 Words were sourced from [pen.org](https://pen.org/banned-words-list/) but as there is no single source of truth where an official list is hosted, this list may be incomplete or over-reaching.

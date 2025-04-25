@@ -24,7 +24,7 @@ echo $VIRTUAL_ENV
 export OPENAI_API_KEY=your-key-here
 
 # install deps
-pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch openai
+pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt openai
 
 # install fastapi cli 
 pip install "fastapi[standard]"
