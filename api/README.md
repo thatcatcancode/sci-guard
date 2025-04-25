@@ -56,3 +56,16 @@ sciguard-api/
 │       └── extractor.py
 ├── requirements.txt
 └── README.md
+
+## 🔐 Data Protection When Using OpenAI API
+✅ API Usage (this project)
+
+If you’re using the OpenAI API via your API key (e.g., in a script, app, or backend), OpenAI’s default data usage policy is:
+
+API inputs and outputs are not used to train OpenAI models
+
+Your data is stored temporarily to monitor for abuse and misuse
+
+Logs may be retained for up to 30 days, unless you have a special agreement
+
+🔗 [OpenAI API Data Usage Policy](https://openai.com/enterprise-privacy/)

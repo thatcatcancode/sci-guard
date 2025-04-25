@@ -12,7 +12,7 @@ def rewrite_sentence(sentence: str, word: str, banned_word: str) -> str:
         f"Rewritten:"
     )
 
-    response = client.chat.completions.create(model="gpt-4o-mini",  # or "gpt-3.5-turbo"
+    response = client.chat.completions.create(model="gpt-4.1-mini",  # or "gpt-3.5-turbo"
     messages=[
         {"role": "system", "content": "You are a helpful academic writing assistant."},
         {"role": "user", "content": prompt}
