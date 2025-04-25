@@ -1,7 +1,7 @@
 ## Api Setup
 
 ```
-cd /api
+cd /backend
 
 # set python version for env
 pyenv local 3.10.13
@@ -24,7 +24,7 @@ echo $VIRTUAL_ENV
 export OPENAI_API_KEY=your-key-here
 
 # install deps
-pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch sentencepiece openai
+pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt transformers torch openai
 
 # install fastapi cli 
 pip install "fastapi[standard]"
