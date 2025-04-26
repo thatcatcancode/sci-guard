@@ -37,13 +37,13 @@ def process_file(file, banned_words) -> List[FlaggedResult]:
                 if banned_word.lower() in word.lower():
                     print('banned word', banned_word, word)
                     highlighted_sentence = highlight_word_in_sentence(sentence, word)
-                    flagged.append({
-                        "id": str(uuid.uuid4()),
-                        "banned_word": banned_word,
-                        "word": word,
-                        "sentence": sentence,
-                        "highlighted_sentence": highlighted_sentence
-                    })
+                    flagged.append(FlaggedResult(
+                        id=str(uuid.uuid4()),
+                        banned_word=banned_word,
+                        word=word,
+                        sentence=sentence,
+                        highlighted_sentence=highlighted_sentence
+                    ))
     return flagged
 
 
