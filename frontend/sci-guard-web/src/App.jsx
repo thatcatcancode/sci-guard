@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
+import BannedWordsChart from './components/BannedWordsChart'
 
 function App() {
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [results, setResults] = useState(null)
   const [error, setError] = useState(null)
-
+  const [summary, setSummary] = useState(null)
   const handleFileUpload = async (event) => {
     const uploadedFile = event.target.files[0]
     if (!uploadedFile) return
@@ -38,6 +39,7 @@ function App() {
 
       const data = await response.json()
       setResults(data.results)
+      setSummary(data.summary)
     } catch (err) {
       setError('Failed to analyze file: ' + err.message)
     } finally {
@@ -116,26 +118,30 @@ function App() {
               {results.length === 0 ? (
                 <p>No issues found in your paper! ✨</p>
               ) : (
-                <div className="results-list">
-                  {results.map((result) => (
-                    <div key={result.id} className="result-item">
-                      <div className="banned-word">
-                        Found: <span className="highlight">{result.word}</span>
-                        {result.banned_word !== result.word && (
-                          <span className="subword"> (contains banned term: {result.banned_word})</span>
-                        )}
+                <>
+                  { summary && <BannedWordsChart summary={summary} />}
+                  { summary && <div className="summary">Summary: <br /> {summary.summary}</div>}
+                  <div className="results-list">
+                    {results.map((result) => (
+                      <div key={result.id} className="result-item">
+                        <div className="banned-word">
+                          Found: <span className="highlight">{result.word}</span>
+                          {result.banned_word !== result.word && (
+                            <span className="subword"> (contains banned term: {result.banned_word})</span>
+                          )}
+                        </div>
+                        <div className="context">
+                          Original: <span className="sentence" dangerouslySetInnerHTML={{ __html: result.highlighted_sentence }} />
+                        </div>
+                        <div className="suggestion">
+                          {!result.suggestion ? (<button onClick={() => handleSingleWrite(result)}>Suggest rewrite ✨</button>) :
+                            <>Suggestion: <span className="sentence">{result.suggestion}</span></>
+                          }
+                        </div>
                       </div>
-                      <div className="context">
-                        Original: <span className="sentence" dangerouslySetInnerHTML={{ __html: result.highlighted_sentence }} />
-                      </div>
-                      <div className="suggestion">
-                        {!result.suggestion ? (<button onClick={() => handleSingleWrite(result)}>Suggest rewrite</button>) :
-                          <>Suggestion: <span className="sentence">{result.suggestion}</span></>
-                        }
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           )}
