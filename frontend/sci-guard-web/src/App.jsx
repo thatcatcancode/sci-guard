@@ -121,12 +121,12 @@ function App() {
                     <div key={result.id} className="result-item">
                       <div className="banned-word">
                         Found: <span className="highlight">{result.word}</span>
-                        {result.banned !== result.word && (
-                          <span className="subword"> (contains banned term: {result.banned})</span>
+                        {result.banned_word !== result.word && (
+                          <span className="subword"> (contains banned term: {result.banned_word})</span>
                         )}
                       </div>
                       <div className="context">
-                        Original: <span className="sentence">{result.sentence}</span>
+                        Original: <span className="sentence" dangerouslySetInnerHTML={{ __html: result.highlighted_sentence }} />
                       </div>
                       <div className="suggestion">
                         {!result.suggestion ? (<button onClick={() => handleSingleWrite(result)}>Suggest rewrite</button>) :

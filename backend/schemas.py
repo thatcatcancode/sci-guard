@@ -7,6 +7,7 @@ class FlaggedResult(BaseModel):
     word: str
     banned_word: str
     suggestion: Optional[str] = None
+    highlighted_sentence: str
     
 class AnalyzePaperResponse(BaseModel):
     results: List[FlaggedResult]

@@ -9,6 +9,20 @@ nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize, word_tokenize
 from services.rewriter import rewrite_sentence
 
+def highlight_word_in_sentence(sentence: str, word: str) -> str:
+    """
+    Highlights a word in a sentence by wrapping it in a span tag.
+    """
+    # Create a case-insensitive regex pattern
+    import re
+    pattern = re.compile(re.escape(word), re.IGNORECASE)
+    # Replace the word with a highlighted version
+    highlighted = pattern.sub(
+        lambda match: f'<span class="highlight">{match.group(0)}</span>',
+        sentence
+    )
+    return highlighted
+
 def process_file(file, banned_words) -> List[FlaggedResult]:
     print("Processing file...")
     text = extract_text(file)
@@ -22,11 +36,13 @@ def process_file(file, banned_words) -> List[FlaggedResult]:
             for banned_word in banned_words:
                 if banned_word.lower() in word.lower():
                     print('banned word', banned_word, word)
+                    highlighted_sentence = highlight_word_in_sentence(sentence, word)
                     flagged.append({
                         "id": str(uuid.uuid4()),
                         "banned_word": banned_word,
                         "word": word,
                         "sentence": sentence,
+                        "highlighted_sentence": highlighted_sentence
                     })
     return flagged
 
