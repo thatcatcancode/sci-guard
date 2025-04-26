@@ -7,9 +7,12 @@ Sci-Guard is an AI tool that scans research papers for banned words and suggests
 Protects important scientific research from being mistakenly overlooked and unfunded due to banned words. Saving science one mistakenly-banned word at a time.
 
 ### Banned Words
-Words were sourced from [pen.org](https://pen.org/banned-words-list/) but as there is no single source of truth where an official list is hosted, this list may be incomplete or over-reaching.
+
+There is no single source of truth where an official list is hosted for public use. As such, this list may be incomplete or over-reaching.
 
 Words also sourced from [NYT report](https://www.forbes.com/sites/brucelee/2025/03/15/these-197-terms-may-trigger-reviews-of-your-nih-nsf-grant-proposals/), said to be specific to NIH grant funding. 
+
+Words were also sourced from [pen.org](https://pen.org/banned-words-list/)
 
 It is often subwords that are discovered problematic and therefore this project aims to replace those occurrences as well.
 
@@ -38,7 +41,8 @@ Endpoints:
 
 Swagger Docs
 
-- POST  /analyze-paper: handles file upload, returns flagged sentences + suggestions
+- POST  /analyze-paper: handles file upload, returns flagged sentences and analysis of paper
+- POST /rewrite: rewrites sentences without banned words using LLM
 - GET   /banned-words: returns list of banned words by government
 - DEL   /analyze-paper/{id}: deletes the history of the paper to protect scientist IP (optional)
 

@@ -1,4 +1,7 @@
 from fastapi.responses import JSONResponse
+from typing import List
+from schemas import FlaggedResult
+import uuid
 from utils.extractor import extract_text
 import nltk
 nltk.download("punkt")
@@ -6,7 +9,7 @@ nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize, word_tokenize
 from services.rewriter import rewrite_sentence
 
-def process_file(file, banned_words):
+def process_file(file, banned_words) -> List[FlaggedResult]:
     print("Processing file...")
     text = extract_text(file)
     if not text:
@@ -19,14 +22,13 @@ def process_file(file, banned_words):
             for banned_word in banned_words:
                 if banned_word.lower() in word.lower():
                     print('banned word', banned_word, word)
-                    suggestion = rewrite_sentence(sentence, word, banned_word)
                     flagged.append({
-                        "banned": banned_word,
+                        "id": str(uuid.uuid4()),
+                        "banned_word": banned_word,
                         "word": word,
                         "sentence": sentence,
-                        "suggestion": suggestion,
                     })
-    return {"results": flagged}
+    return flagged
 
 
 # TODO Use spaCy instead of nltk

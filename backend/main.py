@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routes import analyze
+from routes import rewrite
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -18,3 +19,4 @@ async def root():
     return {"message": "Hello World"}
 
 app.include_router(analyze.router)
+app.include_router(rewrite.router)

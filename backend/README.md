@@ -24,7 +24,7 @@ echo $VIRTUAL_ENV
 export OPENAI_API_KEY=your-key-here
 
 # install deps
-pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt openai
+pip install fastapi uvicorn python-docx PyPDF2 nltk docx2txt openai pydantic uuid
 
 # install fastapi cli 
 pip install "fastapi[standard]"

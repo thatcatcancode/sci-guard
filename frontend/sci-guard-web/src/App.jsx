@@ -45,6 +45,22 @@ function App() {
     }
   }
 
+  const handleSingleWrite = async (result) => {
+    const response = await fetch('/api/sentence/rewrite', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify(result),
+    })
+    const data = await response.json()
+    setResults(prevResults => 
+      prevResults.map(prevResult => 
+        prevResult.id === data.id ? data : prevResult
+      )
+    )
+  }
+
   return (
     <div className="container">
       <header>
@@ -55,7 +71,7 @@ function App() {
       <main>
         {/* File Upload Section */}
         <div className="upload-section">
-          <div 
+          <div
             className="dropzone"
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => {
@@ -101,8 +117,8 @@ function App() {
                 <p>No issues found in your paper! ✨</p>
               ) : (
                 <div className="results-list">
-                  {results.map((result, index) => (
-                    <div key={index} className="result-item">
+                  {results.map((result) => (
+                    <div key={result.id} className="result-item">
                       <div className="banned-word">
                         Found: <span className="highlight">{result.word}</span>
                         {result.banned !== result.word && (
@@ -113,7 +129,9 @@ function App() {
                         Original: <span className="sentence">{result.sentence}</span>
                       </div>
                       <div className="suggestion">
-                        Suggestion: <span className="sentence">{result.suggestion}</span>
+                        {!result.suggestion ? (<button onClick={() => handleSingleWrite(result)}>Suggest rewrite</button>) :
+                          <>Suggestion: <span className="sentence">{result.suggestion}</span></>
+                        }
                       </div>
                     </div>
                   ))}
