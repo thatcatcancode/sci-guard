@@ -51,14 +51,18 @@ function App() {
     const response = await fetch('/api/sentence/rewrite', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(result),
     })
     const data = await response.json()
-    setResults(prevResults => 
-      prevResults.map(prevResult => 
-        prevResult.id === data.id ? data : prevResult
+    setResults(prevResults =>
+      prevResults.map(prevResult => {
+        return {
+          ...prevResult,
+          suggestion: prevResult.id === data.id ? data.suggestion : prevResult.suggestion
+        }
+      }
       )
     )
   }
@@ -119,8 +123,8 @@ function App() {
                 <p>No issues found in your paper! ✨</p>
               ) : (
                 <>
-                  { summary && <BannedWordsChart summary={summary} />}
-                  { summary && <div className="summary">Summary: <br /> {summary.summary}</div>}
+                  {summary && <BannedWordsChart summary={summary} />}
+                  {summary && <div className="summary">Summary: <br /> {summary.summary}</div>}
                   <div className="results-list">
                     {results.map((result) => (
                       <div key={result.id} className="result-item">

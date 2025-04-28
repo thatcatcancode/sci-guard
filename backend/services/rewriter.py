@@ -24,6 +24,7 @@ def rewrite_sentence(result: FlaggedResult) -> FlaggedResult:
     return {
         "id": result.id,
         "sentence": result.sentence,
+        "highlighted_sentence": result.highlighted_sentence,
         "word": result.word,
         "banned_word": result.banned_word,
         "suggestion": response.choices[0].message.content.strip()

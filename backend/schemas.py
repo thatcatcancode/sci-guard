@@ -18,3 +18,5 @@ class SummaryAnalysis(BaseModel):
 class AnalyzePaperResponse(BaseModel):
     results: List[FlaggedResult]
     summary: SummaryAnalysis
+    
+    
