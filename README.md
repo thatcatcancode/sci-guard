@@ -20,13 +20,15 @@ For example: `trans` in `transcriptomics` might be flagged with a suggested revi
 
 ## Workflow 
 
-- Scientists upload research papers (.txt, .docx, or .pdf).
+- Scientists upload research grant proposal (.txt, .docx, or .pdf).
 
 - Scans the text for banned words or phrases.
 
-- Returns the problematic sentences.
+- Returns a summarized report
 
-- Suggests replacement sentences, using sentiment analysis and generative AI.
+- Returns the problematic sentences with the banned words highlighted.
+
+- Suggests replacement sentences, using generative AI.
 
 
 ## 🖼️ Frontend (Web UI)

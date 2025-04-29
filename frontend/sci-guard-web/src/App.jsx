@@ -63,8 +63,8 @@ function App() {
   return (
     <div className="container">
       <header>
-        <h1>Sci-Guard</h1>
-        <p>Upload your grant proposal to check for banned words</p>
+        <h1 className="text-2xl font-bold mb-4">Sci-Guard</h1>
+        <p className="text-sm">Upload your grant proposal to check for banned words</p>
       </header>
 
       <main>
