@@ -23,7 +23,7 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
     return (
       <div className="mb-8 flex items-center justify-between">
         <label className="text-gray-100">File: {file.name}</label>
-        <button 
+        <button
           className="text-blue-500 hover:text-blue-700 underline cursor-pointer"
           onClick={() => setFile(null)}
         >
@@ -40,6 +40,8 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
 
   return (
     <div className="mb-8">
+      <p className="text-med text-center mb-4 text-gray-100">Upload your grant proposal to check for banned words</p>
+
       <div
         className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
         onDragOver={(e) => e.preventDefault()}

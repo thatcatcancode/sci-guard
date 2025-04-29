@@ -64,7 +64,6 @@ function App() {
     <div className="container">
       <header>
         <h1 className="text-2xl font-bold mb-4 text-center">Sci-Guard</h1>
-        <p className="text-med text-center mb-4">Upload your grant proposal to check for banned words</p>
       </header>
 
       <main>

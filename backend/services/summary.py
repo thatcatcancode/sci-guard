@@ -27,12 +27,8 @@ def summarize_results(results: List[FlaggedResult]) -> SummaryAnalysis:
 
 def generate_summary_text(results: List[FlaggedResult], banned_word_counts: Dict[str, int]) -> str:
     """Generate the human-readable summary text."""
-    summary = f"Found {len(results)} instances of potentially problematic language across {len(banned_word_counts)} different banned words.\n\n"
+    summary = f"Found {len(results)} instances of potentially 'problematic' language across {len(banned_word_counts)} different banned words.\n\n"
     
-    # Add banned word counts
-    summary += "Banned word occurrences:\n"
-    for word, count in sorted(banned_word_counts.items(), key=lambda x: (-x[1], x[0])):
-        summary += f"- '{word}': {count} time{'s' if count > 1 else ''}\n"
-    
+
     return summary
     

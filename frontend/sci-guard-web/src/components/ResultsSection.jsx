@@ -12,7 +12,7 @@ const ResultsSection = ({ results, summary, onRewrite }) => {
           {summary && <BannedWordsChart summary={summary} />}
           {summary && (
             <div className="p-4 rounded-lg mb-4">
-              Hot take: <br /> {summary.summary}
+              TLDR; <br /> {summary.summary}
             </div>
           )}
           <div>
