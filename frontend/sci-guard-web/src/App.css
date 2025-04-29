@@ -6,161 +6,16 @@
   padding: 2rem;
 }
 
+header {
+  color: rgb(159, 250, 220);
+}
+
 button {
-  background-color: rgba(75, 192, 192, 0.6);
-  color: black
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  color: rgb(114, 240, 198);
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  color: aquamarine;
-}
-
-.upload-section {
-  margin-top: 2rem;
-}
-
-.dropzone {
-  border: 2px dashed #3b82f6;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  background-color: #fff;
-  transition: all 0.3s ease;
-  color: #333;
-}
-
-.dropzone:hover {
-  border-color: #1d4ed8;
-  background-color: #f8fafc;
-}
-
-.upload-label {
-  display: block;
-  cursor: pointer;
-  color: #2c3e50;
-}
-
-.upload-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: #4a90e2;
-}
-
-.file-types {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  color: #475569;
-}
-
-.loading-spinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100px;
-}
-
-.error-message {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border-radius: 4px;
-  background-color: #fee2e2;
-  color: #dc2626;
-}
-
-.summary {
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.results-section {
-  margin-top: 2rem;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  color: #1f2937;
-}
-
-.result-item {
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  background-color: #f8fafc;
-}
-
-.banned-word {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #1f2937;
-}
-
-.highlight {
-  background-color: #fef3c7;
-  padding: 0.125rem 0.25rem;
-  border-radius: 4px;
-  color: #92400e;
-}
-
-.subword {
-  color: #4b5563;
-  font-size: 0.875rem;
-}
-
-.context, .suggestion {
-  margin-top: 0.5rem;
-  color: #1f2937;
-}
-
-.sentence {
-  color: #1f2937;
 }

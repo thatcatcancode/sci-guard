@@ -3,15 +3,19 @@ import ResultItem from './ResultItem'
 
 const ResultsSection = ({ results, summary, onRewrite }) => {
   return (
-    <div className="results-section">
-      <h2>Analysis Results</h2>
+    <div className="mt-8">
+      <h2 className="text-2xl font-bold mb-4 text-center">Grant Proposal Analysis</h2>
       {results.length === 0 ? (
         <p>No issues found in your paper! ✨</p>
       ) : (
         <>
           {summary && <BannedWordsChart summary={summary} />}
-          {summary && <div className="summary">Summary: <br /> {summary.summary}</div>}
-          <div className="results-list">
+          {summary && (
+            <div className="p-4 rounded-lg mb-4">
+              Hot take: <br /> {summary.summary}
+            </div>
+          )}
+          <div>
             {results.map((result) => (
               <ResultItem
                 key={result.id}

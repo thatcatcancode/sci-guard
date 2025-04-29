@@ -21,16 +21,16 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
 
   if (!!file) {
     return (
-      <div className="upload-section" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <label className="file-name">File: {file.name}</label>
+      <div className="mb-8 flex items-center justify-between">
+        <label className="text-gray-100">File: {file.name}</label>
         <button 
-          className="upload-another-btn"
+          className="text-blue-500 hover:text-blue-700 underline cursor-pointer"
           onClick={() => setFile(null)}
         >
           Upload another file
         </button>
         {error && (
-          <div className="error-message">
+          <div className="text-red-500 mt-2">
             {error}
           </div>
         )}
@@ -39,9 +39,9 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
   }
 
   return (
-    <div className="upload-section">
+    <div className="mb-8">
       <div
-        className="dropzone"
+        className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault()
@@ -56,23 +56,23 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
           id="file-upload"
           accept=".txt,.docx,.pdf"
           onChange={handleFileUpload}
-          style={{ display: 'none' }}
+          className="hidden"
         />
-        <label htmlFor="file-upload" className="upload-label">
+        <label htmlFor="file-upload" className="cursor-pointer">
           {loading ? (
-            <div className="loading-spinner">Analyzing...</div>
+            <div className="text-blue-500">Analyzing...</div>
           ) : (
             <>
-              <div className="upload-icon">📄</div>
+              <div className="text-4xl mb-2">📄</div>
               <div>Drag and drop your file here or click to browse</div>
-              <div className="file-types">Supported: .txt, .docx, .pdf</div>
+              <div className="text-sm text-gray-500 mt-2">Supported: .txt, .docx, .pdf</div>
             </>
           )}
         </label>
       </div>
 
       {error && (
-        <div className="error-message">
+        <div className="text-red-500 mt-2">
           {error}
         </div>
       )}
