@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 const FileUpload = ({ onFileUpload, loading, error }) => {
+  const [file, setFile] = useState(null)
+
   const handleFileUpload = async (event) => {
     const uploadedFile = event.target.files[0]
     if (!uploadedFile) return
@@ -14,6 +16,26 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
     }
 
     onFileUpload(uploadedFile, null)
+    setFile(uploadedFile)
+  }
+
+  if (!!file) {
+    return (
+      <div className="upload-section" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <label className="file-name">File: {file.name}</label>
+        <button 
+          className="upload-another-btn"
+          onClick={() => setFile(null)}
+        >
+          Upload another file
+        </button>
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+      </div>
+    )
   }
 
   return (

@@ -4,7 +4,6 @@ import FileUpload from './components/FileUpload'
 import ResultsSection from './components/ResultsSection'
 
 function App() {
-  const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [results, setResults] = useState(null)
   const [error, setError] = useState(null)
@@ -16,7 +15,6 @@ function App() {
       return
     }
 
-    setFile(uploadedFile)
     setError(null)
     setLoading(true)
 
