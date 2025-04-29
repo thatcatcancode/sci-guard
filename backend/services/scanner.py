@@ -1,5 +1,5 @@
 from fastapi.responses import JSONResponse
-from typing import List
+from typing import List, Optional
 from schemas import FlaggedResult
 import uuid
 from utils.extractor import extract_text
@@ -23,6 +23,19 @@ def highlight_word_in_sentence(sentence: str, word: str) -> str:
     )
     return highlighted
 
+def sentence_has_banned_word(sentence: str, banned_words: List[str], original_result: Optional[FlaggedResult]) -> Optional[FlaggedResult]:
+    for word in word_tokenize(sentence):
+        for banned_word in banned_words:
+            if banned_word.lower() in word.lower():
+                return FlaggedResult(
+                    id=original_result.id if original_result else str(uuid.uuid4()),
+                    banned_word=banned_word,
+                    word=word,
+                    sentence=original_result.sentence if original_result else sentence,
+                    highlighted_sentence=original_result.highlighted_sentence if original_result else highlight_word_in_sentence(sentence, word),
+                )
+    return None
+
 def process_file(file, banned_words) -> List[FlaggedResult]:
     print("Processing file...")
     text = extract_text(file)
@@ -32,18 +45,16 @@ def process_file(file, banned_words) -> List[FlaggedResult]:
     sentences = sent_tokenize(text)
     flagged = []
     for sentence in sentences:
-        for word in word_tokenize(sentence):
-            for banned_word in banned_words:
-                if banned_word.lower() in word.lower():
-                    print('banned word', banned_word, word)
-                    highlighted_sentence = highlight_word_in_sentence(sentence, word)
-                    flagged.append(FlaggedResult(
-                        id=str(uuid.uuid4()),
-                        banned_word=banned_word,
-                        word=word,
-                        sentence=sentence,
-                        highlighted_sentence=highlighted_sentence
-                    ))
+        flagged_result = sentence_has_banned_word(sentence, banned_words, None)
+        if flagged_result:
+            highlighted_sentence = highlight_word_in_sentence(sentence, flagged_result.word)
+            flagged.append(FlaggedResult(
+                id=flagged_result.id,
+                banned_word=flagged_result.banned_word,
+                word=flagged_result.word,
+                sentence=sentence,
+                highlighted_sentence=highlighted_sentence
+            ))
     return flagged
 
 

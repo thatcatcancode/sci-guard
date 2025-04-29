@@ -6,6 +6,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 def rewrite_sentence(result: FlaggedResult) -> FlaggedResult:
+    print('rewriting sentence', result.word, result.banned_word)
     words = ", ".join([result.word, result.banned_word])
     prompt = (
         f"Rewrite the following sentence to avoid using the words {words}:\n"
@@ -20,15 +21,25 @@ def rewrite_sentence(result: FlaggedResult) -> FlaggedResult:
     ],
     temperature=0.7,
     max_tokens=150)
+    
+    return FlaggedResult(
+        id=result.id,
+        sentence=result.sentence,
+        word=result.word,
+        banned_word=result.banned_word,
+        highlighted_sentence=result.highlighted_sentence,
+        suggestion=response.choices[0].message.content.strip(),
+    )
+    
 
-    return {
-        "id": result.id,
-        "sentence": result.sentence,
-        "highlighted_sentence": result.highlighted_sentence,
-        "word": result.word,
-        "banned_word": result.banned_word,
-        "suggestion": response.choices[0].message.content.strip()
-    }
+
+
+
+
+
+
+
+
 
 
 # from transformers import T5Tokenizer, T5ForConditionalGeneration
