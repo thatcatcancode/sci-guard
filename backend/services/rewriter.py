@@ -1,13 +1,14 @@
 import os
+from typing import List, Optional
 from openai import OpenAI
 from schemas import FlaggedResult
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def rewrite_sentence(result: FlaggedResult) -> FlaggedResult:
+def rewrite_sentence(result: FlaggedResult, banned_words: Optional[List[str]] = []) -> FlaggedResult:
     print('rewriting sentence', result.word, result.banned_word)
-    words = ", ".join([result.word, result.banned_word])
+    words = ", ".join([result.word, result.banned_word, *banned_words])
     prompt = (
         f"Rewrite the following sentence to avoid using the words {words}:\n"
         f"Original: {result.sentence}\n"

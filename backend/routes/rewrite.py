@@ -18,7 +18,7 @@ async def rewrite(result: FlaggedResult):
     if flagged_result is not None:
         print('flagged - banned word still present')
         # If banned words are still present, try to rewrite again
-        return rewrite_sentence(flagged_result)
+        return rewrite_sentence(flagged_result, [rewrite_result.banned_word, rewrite_result.word])
     
     return rewrite_result
 
