@@ -20,8 +20,8 @@ echo $VIRTUAL_ENV
 # necessary to install nltk
 /Applications/Python\ 3.13/Install\ Certificates.command
 
-# set openai key
-export OPENAI_API_KEY=your-key-here
+# copy .env file and set your own values
+mv .env-template .env
 
 # install deps
 pip install -r requirements.txt

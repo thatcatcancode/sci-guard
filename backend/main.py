@@ -1,4 +1,8 @@
 from fastapi import FastAPI
+
+from dotenv import load_dotenv
+load_dotenv()
+
 from routes import analyze
 from routes import rewrite
 from fastapi.middleware.cors import CORSMiddleware

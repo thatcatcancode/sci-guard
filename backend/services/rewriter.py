@@ -1,9 +1,14 @@
-import os
 from typing import List, Optional
 from openai import OpenAI
 from schemas import FlaggedResult
+import os
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+api_key = os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+    raise EnvironmentError("Missing OPENAI_API_KEY environment variable!")
+
+client = OpenAI(api_key=api_key)
 
 
 def rewrite_sentence(result: FlaggedResult, banned_words: Optional[List[str]] = []) -> FlaggedResult:
