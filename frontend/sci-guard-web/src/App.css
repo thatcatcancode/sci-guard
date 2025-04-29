@@ -11,11 +11,11 @@ header {
 }
 
 button {
-  color: rgb(114, 240, 198);
+  background-color: rgb(114, 240, 198);
+  color: black;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
+button.secondary {
+  background-color: lightgray;
+  color: darkgray;
 }

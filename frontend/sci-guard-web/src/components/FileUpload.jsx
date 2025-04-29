@@ -24,10 +24,13 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
       <div className="mb-8 flex items-center justify-between">
         <label className="text-gray-100">File: {file.name}</label>
         <button
-          className="text-blue-500 hover:text-blue-700 underline cursor-pointer"
+          className="flex items-center gap-2 text-blue-500 hover:text-blue-700 cursor-pointer"
           onClick={() => setFile(null)}
         >
-          Upload another file
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          </svg>
+          Upload
         </button>
         {error && (
           <div className="text-red-500 mt-2">
@@ -43,7 +46,7 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
       <p className="text-med text-center mb-4 text-gray-100">Upload your grant proposal to check for banned words</p>
 
       <div
-        className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
+        className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:border-blue-500 transition-colors w-full h-64 flex items-center justify-center"
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault()
