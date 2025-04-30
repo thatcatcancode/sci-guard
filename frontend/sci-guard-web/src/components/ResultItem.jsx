@@ -72,10 +72,9 @@ const ResultItem = ({ result, onRewrite, isRewriting }) => {
               </button>
             </div>
             <textarea
-              readOnly
               rows={3}
-              className="font-mono p-1 rounded select-all cursor-pointer bg-gray-100 w-full text-gray-800"
-              value={result.suggestion}
+              className="font-mono p-1 rounded select-all bg-gray-100 w-full text-gray-800"
+              defaultValue={result.suggestion}
             />
           </div>
         )}

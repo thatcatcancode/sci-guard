@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import FileUpload from './components/FileUpload'
 import ResultsSection from './components/ResultsSection'
+import sciGuardLogo from './assets/sci-guard-logo.png'
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
@@ -70,10 +71,7 @@ function App() {
 
   return (
     <div className="container">
-      <header>
-        <h1 className="text-2xl font-bold mb-4 text-center">Sci-Guard</h1>
-      </header>
-
+      <img src={sciGuardLogo} alt="Sci-Guard Logo" className="w-1/2 mx-auto block" />
       <main>
         {loading ? (
           <div className="flex flex-col items-center justify-center min-h-[400px]">
