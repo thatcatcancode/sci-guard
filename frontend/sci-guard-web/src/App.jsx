@@ -14,6 +14,12 @@ function App() {
   const [summary, setSummary] = useState(null)
   const [rewritingId, setRewritingId] = useState(null)
 
+  const handleUpload = () => {
+    setResults(null)
+    setSummary(null)
+    setError(null)
+  }
+
   const handleFileUpload = async (uploadedFile, uploadError) => {
     if (uploadError) {
       setError(uploadError)
@@ -72,9 +78,9 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
+      <Header onUpload={handleUpload} showUpload={!!results} />
       <div className={`transition-all duration-500 ${results ? 'mt-20' : ''}`}>
-        {!results && (
+        {!results && !loading && (
           <img 
             src={sciGuardLogo} 
             alt="Sci-Guard Logo" 
