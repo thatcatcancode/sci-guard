@@ -24,6 +24,7 @@ function About() {
             <li>Here are OpenAI's own words on their privacy and data security practices <a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener noreferrer">OpenAI Data Usage Policy</a></li>
             <li>We have opted out of OpenAI's usage of your data for training their models</li>
             <li>We do not use cookies to track your activity</li>
+            <li>This is an opensource project so you can peek the code yourself: <a href="https://github.com/thatcatcancode/sci-guard" target="_blank" rel="noopener noreferrer">Sci-Guard GitHub Repo</a> 👀</li>
           </ul>
         </section>
 

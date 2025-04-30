@@ -17,6 +17,7 @@ function Header({ onUpload, showUpload }) {
           >
             About
           </Link>
+          <a href="https://github.com/thatcatcancode/sci-guard" target="_blank" rel="noopener noreferrer">Github</a>
           {showUpload && (
             <button 
               onClick={onUpload}
