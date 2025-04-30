@@ -43,10 +43,9 @@ Endpoints:
 
 Swagger Docs
 
-- POST  /analyze-paper: handles file upload, returns flagged sentences and analysis of paper
-- POST /rewrite: rewrites sentences without banned words using LLM
-- GET   /banned-words: returns list of banned words by government
-- DEL   /analyze-paper/{id}: deletes the history of the paper to protect scientist IP (optional)
+- POST  /paper/analyze: handles file upload, returns flagged sentences and analysis of paper
+- POST /sentence/rewrite: rewrites sentences without banned words using LLM
+
 
 Logic Flow:
 

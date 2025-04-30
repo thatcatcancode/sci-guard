@@ -3,6 +3,8 @@ import './App.css'
 import FileUpload from './components/FileUpload'
 import ResultsSection from './components/ResultsSection'
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 function App() {
   const [loading, setLoading] = useState(false)
   const [results, setResults] = useState(null)
@@ -22,7 +24,7 @@ function App() {
       const formData = new FormData()
       formData.append('file', uploadedFile)
 
-      const response = await fetch('/api/analyze-paper', {
+      const response = await fetch(`${API_URL}/api/paper/analyze`, {
         method: 'POST',
         body: formData,
       })
@@ -42,7 +44,7 @@ function App() {
   }
 
   const handleSingleWrite = async (result) => {
-    const response = await fetch('/api/sentence/rewrite', {
+    const response = await fetch(`${API_URL}/api/sentence/rewrite`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

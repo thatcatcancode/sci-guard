@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -8,7 +8,7 @@ from routes import rewrite
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
+api_router = APIRouter()
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,5 +22,6 @@ app.add_middleware(
 async def root():
     return {"message": "Hello World"}
 
+app.include_router(api_router, prefix="/api")
 app.include_router(analyze.router)
 app.include_router(rewrite.router)
