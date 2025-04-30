@@ -10,6 +10,7 @@ function App() {
   const [results, setResults] = useState(null)
   const [error, setError] = useState(null)
   const [summary, setSummary] = useState(null)
+  const [rewritingId, setRewritingId] = useState(null)
 
   const handleFileUpload = async (uploadedFile, uploadError) => {
     if (uploadError) {
@@ -44,22 +45,27 @@ function App() {
   }
 
   const handleSingleWrite = async (result) => {
-    const response = await fetch(`${API_URL}/sentence/rewrite`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(result),
-    })
-    const data = await response.json()
-    setResults(prevResults =>
-      prevResults.map(prevResult => {
-        return {
-          ...prevResult,
-          suggestion: prevResult.id === data.id ? data.suggestion : prevResult.suggestion
-        }
+    setRewritingId(result.id)
+    try {
+      const response = await fetch(`${API_URL}/sentence/rewrite`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(result),
       })
-    )
+      const data = await response.json()
+      setResults(prevResults =>
+        prevResults.map(prevResult => {
+          return {
+            ...prevResult,
+            suggestion: prevResult.id === data.id ? data.suggestion : prevResult.suggestion
+          }
+        })
+      )
+    } finally {
+      setRewritingId(null)
+    }
   }
 
   return (
@@ -76,16 +82,19 @@ function App() {
           </div>
         ) : (
           <>
-            <FileUpload
-              onFileUpload={handleFileUpload}
-              loading={loading}
-              error={error}
-            />
-            {results && !loading && (
+            {!results && (
+              <FileUpload
+                onFileUpload={handleFileUpload}
+                loading={loading}
+                error={error}
+              />
+            )}
+            {results && (
               <ResultsSection
                 results={results}
                 summary={summary}
                 onRewrite={handleSingleWrite}
+                rewritingId={rewritingId}
               />
             )}
           </>

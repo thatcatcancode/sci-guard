@@ -25,7 +25,7 @@ const BannedWordsChart = ({ summary }) => {
         .slice(0, 10);
 
     const data = {
-        labels: sortedWords.map(([word]) => word),
+        labels: sortedWords.map(([word, count]) => `${word} (${count})`),
         datasets: [
             {
                 data: sortedWords.map(([_, count]) => count),
@@ -59,34 +59,45 @@ const BannedWordsChart = ({ summary }) => {
     };
 
     const options = {
-        responsive: true,
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    boxWidth: 20,
+                    padding: 20,
+                    font: {
+                        size: 14,
+                        color: 'rgba(255, 255, 255, 0.8)'
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const value = context.raw || 0;
+                        return `${label}: ${value} occurrences`;
+                    }
+                },
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'rgba(255, 255, 255, 0.8)',
+                bodyColor: 'rgba(255, 255, 255, 0.8)',
+                borderColor: 'rgba(255, 255, 255, 0.2)',
+                borderWidth: 1
+            }
+        },
         maintainAspectRatio: false,
-        aspectRatio: 1.5,
+        aspectRatio: 1.2,
         layout: {
             padding: {
                 top: 0,
                 bottom: 0
             }
-        },
-        plugins: {
-            legend: {
-                position: 'left',
-                labels: {
-                    font: {
-                        size: 14
-                    },
-                    padding: 20
-                }
-            },
-            title: {
-                display: true,
-                text: 'Distribution of Banned Words',
-            },
-        },
+        }
     };
 
     return (
-        <div className="chart-container max-w-[500px] mx-auto py-0">
+        <div className="max-w-[500px] mx-auto py-0">
             <Pie data={data} options={options} />
         </div>
     );

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 #root {
   max-width: 1280px;
@@ -18,4 +21,11 @@ button {
 button.secondary {
   background-color: lightgray;
   color: darkgray;
+}
+
+.highlight {
+  background-color: #fef08a;
+  padding: 0.1em 0.2em;
+  border-radius: 0.2em;
+  color: black;
 }

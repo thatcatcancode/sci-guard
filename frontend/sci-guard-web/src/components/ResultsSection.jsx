@@ -1,7 +1,7 @@
 import BannedWordsChart from './BannedWordsChart'
 import ResultItem from './ResultItem'
 
-const ResultsSection = ({ results, summary, onRewrite }) => {
+const ResultsSection = ({ results, summary, onRewrite, rewritingId }) => {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-center">Grant Proposal Analysis</h2>
@@ -21,6 +21,7 @@ const ResultsSection = ({ results, summary, onRewrite }) => {
                 key={result.id}
                 result={result}
                 onRewrite={onRewrite}
+                isRewriting={rewritingId === result.id}
               />
             ))}
           </div>

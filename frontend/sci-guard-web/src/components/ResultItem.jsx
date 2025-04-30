@@ -1,4 +1,4 @@
-const ResultItem = ({ result, onRewrite }) => {
+const ResultItem = ({ result, onRewrite, isRewriting }) => {
   const copyToClipboard = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -30,24 +30,31 @@ const ResultItem = ({ result, onRewrite }) => {
             Copy
           </button>
         </div>
-        <textarea
-          readOnly
-          rows={3}
-          className="font-mono p-1 rounded select-all cursor-pointer bg-gray-100 w-full text-gray-800"
-          onClick={() => copyToClipboard(result.sentence)}
-          value={result.sentence}
-        />
+        {result.highlighted_sentence ? (
+          <div
+            className="font-mono p-2 rounded select-all cursor-pointer w-full text-gray-300"
+            dangerouslySetInnerHTML={{ __html: result.highlighted_sentence }}
+          />
+        ) : (
+          <div
+            className="font-mono p-2 rounded select-all cursor-pointer bg-gray-100 w-full text-gray-800"
+            onClick={() => copyToClipboard(result.sentence)}
+          >
+            {result.sentence}
+          </div>
+        )}
       </div>
       <div className="mt-2">
         {!result.suggestion ? (
-          <button 
+          <button
             onClick={() => onRewrite(result)}
-            className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+            disabled={isRewriting}
+            className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
             </svg>
-            Rewrite sentence
+            {isRewriting ? 'Rewriting...' : 'Rewrite sentence'}
           </button>
         ) : (
           <div>
@@ -68,7 +75,6 @@ const ResultItem = ({ result, onRewrite }) => {
               readOnly
               rows={3}
               className="font-mono p-1 rounded select-all cursor-pointer bg-gray-100 w-full text-gray-800"
-              onClick={() => copyToClipboard(result.suggestion)}
               value={result.suggestion}
             />
           </div>
