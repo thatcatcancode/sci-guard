@@ -11,7 +11,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://sci-guard-backend.onrender.com"],  # Adjust to your frontend host
+    allow_origins=["http://localhost:3000", "https://sciguard.netlify.app"],  # Adjust to your frontend host
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
