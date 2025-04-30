@@ -6,8 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig(({
   mode
 }) => {
-  const isDev = mode === 'development';
-  console.warn('isDev', isDev)
+  const isDev = mode !== 'production';
   return {
     plugins: [
       react(),
