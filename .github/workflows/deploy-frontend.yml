@@ -29,5 +29,5 @@ jobs:
           push: true
           tags: leeadams/sci-guard-frontend:latest
 
-      # - name: Trigger Render deploy (optional)
-      #   run: curl -X POST ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
+      - name: Trigger Render deploy
+        run: curl -X POST ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK }}
