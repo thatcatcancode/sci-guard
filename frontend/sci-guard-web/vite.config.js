@@ -22,7 +22,7 @@ export default defineConfig(({
       }
     } : undefined,
     build: {
-      outDir: '../public', // or wherever you want the final build to go
+      outDir: './dist', // or wherever you want the final build to go
     }
   }
 });
