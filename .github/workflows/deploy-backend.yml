@@ -3,6 +3,8 @@ name: Build & Push FastAPI Backend
 on:
   push:
     branches: [ main ]  # or your default branch
+    paths:
+      - 'backend/**'
 
 jobs:
   build-and-push:
@@ -25,7 +27,7 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: leeadams/sci-guard-backend:latest
-          
+
       - name: Trigger Render Deploy
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
 
