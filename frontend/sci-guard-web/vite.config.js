@@ -7,6 +7,7 @@ export default defineConfig(({
   mode
 }) => {
   const isDev = mode === 'development';
+  console.warn('isDev', isDev)
   return {
     plugins: [
       react(),
