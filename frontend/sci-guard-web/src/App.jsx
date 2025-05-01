@@ -5,7 +5,7 @@ import FileUpload from './components/FileUpload'
 import ResultsSection from './components/ResultsSection'
 import Header from './components/Header'
 import About from './pages/About'
-import sciGuardLogo from './assets/sci-guard-logo.png'
+import sciGuardScreenshot from './assets/sci-guard-screenshot.png'
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
@@ -90,9 +90,9 @@ function App() {
                 <>
                   {!results && !loading && (
                     <img 
-                      src={sciGuardLogo} 
+                      src={sciGuardScreenshot} 
                       alt="Sci-Guard Logo" 
-                      className={`w-1/2 mx-auto block transition-all duration-500 ${results ? 'w-0 opacity-0' : 'opacity-100'}`} 
+                      className={`w-1/3 mx-auto block transition-all duration-500 ${results ? 'w-0 opacity-0' : 'opacity-100'} mb-8`} 
                     />
                   )}
                   {loading ? (
