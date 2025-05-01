@@ -34,7 +34,7 @@ For example: `trans` in `transcriptomics` might be flagged with a suggested revi
 ## 🖼️ Frontend (Web UI)
 
 - React
-- Components: File upload dropzone, Progress/loading indicator, Results view (problematic sentence + suggested fix)
+- Components: File upload dropzone, Chart.js, Results view (problematic sentence + suggested fix)
 - [Cloudfare Turnstile](https://www.cloudflare.com/application-services/products/turnstile/) to verify user is not a robot (optional)
 
 
@@ -44,58 +44,15 @@ Endpoints:
 Swagger Docs
 
 - POST  /paper/analyze: handles file upload, returns flagged sentences and analysis of paper
-- POST /sentence/rewrite: rewrites sentences without banned words using LLM
+- POST /sentence/rewrite: rewrites sentence without banned words using LLM, recursive
 
-
-Logic Flow:
-
-1. Accept and parse document (.txt, .docx, or .pdf)
-
-2. Run keyword scan for banned words.
-
-3. Extract sentences that contain them.
-
-4. Feed each into BERT for sentiment analysis (optional).
-
-5. Use generative AI (e.g., OpenAI API or local model) to propose alternatives.
-
-6. Return: [{ "banned": "trigger phrase", "sentence": "...", "suggestion": "..." }]
-
-## 🗃️ Database (Optional)
-Use cases:
-
-Logging uploads
-
-Tracking flagged sentences
-
-Could be: PostgreSQL, SQLite, or NoSQL like MongoDB
 
 ## ⚙️ NLP/AI Components
 Keyword Scanner: ntlk / spaCy / custom dictionary-based matching
 
-Sentiment Analysis: transformers library (distilbert-base-uncased-finetuned-sst-2-english)
-
-Generative AI: OpenAI GPT-4, Mistral, Claude, or locally hosted LLM
-
-## Flow 
-
-[1] Scientist uploads paper → 
-[2] Frontend sends file to backend API →
-[3] Backend extracts + tokenizes text →
-[4] Banned word scanner runs →
-[5] Problematic sentences are extracted →
-[6] Generative AI suggests replacements →
-[7] Backend returns structured response →
-[8] Frontend displays flagged sentences + suggestions
-[9] Displays sentiment score based on neutral science objectivity.
-[10] Scientist has option to delete paper from model and database.
+Generative AI: OpenAI GPT-4x
 
 
-## Models
-
-### BERT vs GPT
-- Need a large context window to accept large documents if doing sentiment analysis on entire document
-- Might make sense to only do sentiment analysis on sentence with the banned word + the surrounding sentences to reduce cost + carbon, and increase performance.
 
 ```
 In the context of GPT and other large language models (LLMs), a context window refers to the maximum amount of text the model can process at one time when generating a response. It's measured in tokens, which are roughly equivalent to words, and includes both the user's input (prompt) and the model's own generated text
