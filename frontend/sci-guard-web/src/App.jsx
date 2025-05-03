@@ -5,7 +5,7 @@ import FileUpload from './components/FileUpload'
 import ResultsSection from './components/ResultsSection'
 import Header from './components/Header'
 import About from './pages/About'
-import sciGuardScreenshot from './assets/sci-guard-screenshot.png'
+import HowItWorks from './components/HowItWorks'
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
@@ -88,13 +88,6 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/" element={
                 <>
-                  {!results && !loading && (
-                    <img 
-                      src={sciGuardScreenshot} 
-                      alt="Sci-Guard Logo" 
-                      className={`w-1/3 mx-auto block transition-all duration-500 ${results ? 'w-0 opacity-0' : 'opacity-100'} mb-8`} 
-                    />
-                  )}
                   {loading ? (
                     <div className="flex flex-col items-center justify-center min-h-[400px]">
                       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
@@ -103,11 +96,14 @@ function App() {
                   ) : (
                     <>
                       {!results && (
-                        <FileUpload
-                          onFileUpload={handleFileUpload}
-                          loading={loading}
-                          error={error}
-                        />
+                        <>
+                          <HowItWorks />
+                          <FileUpload
+                            onFileUpload={handleFileUpload}
+                            loading={loading}
+                            error={error}
+                          />
+                        </>
                       )}
                       {results && (
                         <ResultsSection

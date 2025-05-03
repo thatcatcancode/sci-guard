@@ -43,7 +43,7 @@ const FileUpload = ({ onFileUpload, loading, error }) => {
 
   return (
     <div className="mb-8">
-      <h2 className="text-2xl text-center mb-4 text-gray-100">Upload your grant proposal to begin</h2>
+      <h2 className="text-2xl text-center mb-4 text-gray-100">Step 1: Upload your grant proposal</h2>
 
       <div
         className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:border-blue-500 transition-colors w-full h-64 flex items-center justify-center"
