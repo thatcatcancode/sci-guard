@@ -10,7 +10,7 @@ function About() {
             Sci-Guard: Safeguarding science one word at a time. Our goals it protect scientific research from being mistakenly flagged and unfunded due to the governments effort to ban DEI-related research.          </p>
         </section>
 
-        <section>
+        <section id="privacy">
           <h2 className="text-xl font-semibold text-[#9ffadc] mb-3">Privacy & Data Security</h2>
           <p>
             We take your privacy and data security seriously. Here's how we handle your information:
