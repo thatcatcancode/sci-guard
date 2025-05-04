@@ -1,5 +1,6 @@
 import React from 'react';
 import { Upload, Search, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function HowItWorks() {
   const steps = [
@@ -68,8 +69,14 @@ export default function HowItWorks() {
       </div>
 
       <div className="mt-16 text-center">
-        <p className="text-gray-400 text-sm">
+        <p className="text-gray-400 text-sm inline-flex items-center gap-2">
           Your documents are processed securely and never stored on our servers
+          <Link 
+            to="/about#privacy"
+            className="text-[#9ffadc] hover:text-[#2A9D8F] transition-colors text-sm inline-flex items-center"
+          >
+            more info →
+          </Link>
         </p>
       </div>
     </section>

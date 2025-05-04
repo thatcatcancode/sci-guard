@@ -1,10 +1,10 @@
 function About() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="max-w-3xl mx-auto px-4 py-8 min-h-[1000px]">
       <h1 className="text-3xl font-bold text-white mb-6">About Sci-Guard</h1>
 
       <div className="space-y-6 text-gray-300">
-        <section>
+        <section id="mission">
           <h2 className="text-xl font-semibold text-[#9ffadc] mb-3">Our Mission</h2>
           <p>
             Sci-Guard: Safeguarding science one word at a time. Our goals it protect scientific research from being mistakenly flagged and unfunded due to the governments effort to ban DEI-related research.          </p>

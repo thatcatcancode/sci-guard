@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import FileUpload from './components/FileUpload'
@@ -11,10 +11,21 @@ const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 function App() {
   const [loading, setLoading] = useState(false)
+  const [loadingMessage, setLoadingMessage] = useState('')
   const [results, setResults] = useState(null)
   const [error, setError] = useState(null)
   const [summary, setSummary] = useState(null)
   const [rewritingId, setRewritingId] = useState(null)
+
+  useEffect(() => {
+    if (loading) {
+      setLoadingMessage("Waking up the API...")
+      const timer = setTimeout(() => {
+        setLoadingMessage("Analyzing your document...")
+      }, 3500)
+      return () => clearTimeout(timer)
+    }
+  }, [loading])
 
   const handleUpload = () => {
     setResults(null)
@@ -91,7 +102,7 @@ function App() {
                   {loading ? (
                     <div className="flex flex-col items-center justify-center min-h-[400px]">
                       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-                      <p className="mt-4 text-gray-600">Analyzing your document...</p>
+                      <p className="mt-4 text-gray-300">{loadingMessage}</p>
                     </div>
                   ) : (
                     <>
